@@ -1,3 +1,2 @@
-// Completar con un proyecto NUEVO de Supabase. Nunca usar service_role aquí.
-// No reutilizar las cuentas ni la base de datos privada de Nuestro-Universos.
-window.MUNDO_CONFIG = { supabaseUrl: '', supabasePublishableKey: '' };
+// Solo URL y clave PUBLICABLE. Las claves secretas nunca se incluyen en la web.
+window.MUNDO_CONFIG = { supabaseUrl: 'https://xhtfqtbloqdfhqfppefp.supabase.co', supabasePublishableKey: 'sb_publishable_pFYaEnIqRqoLJtKVY-hLBw_J7iCHDA-' };

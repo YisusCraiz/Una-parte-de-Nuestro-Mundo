@@ -1,101 +1,102 @@
 # Una parte de Nuestro Mundo
 
-Un portal de juegos de Jesús y Julissa, con una identidad lila y rosa, ilustración de bienvenida, animación de palmaditas y créditos dedicados a Julissa. Versión inicial **0.1.0**.
+Portal de Jesús y Julissa. Versión **0.2.0**, conectado al proyecto Supabase **Una parte de nuestro universo**.
 
-## Qué puedes probar ahora
+## Cuentas, monedas y personalización
 
-Sin cuenta y en el mismo dispositivo:
+- Registro e inicio con nombre de usuario y contraseña. Supabase Auth gestiona las contraseñas; no se guardan en el código.
+- Perfiles persistentes: avatar, nombre visible, biografía, color, fondos, marcos y peluche acompañante.
+- Yisus y Julissa están reservados con sus skins originales. Se activan mediante enlaces privados de un solo uso y una contraseña elegida por cada titular. Los tokens de activación no se guardan en este repositorio.
+- Regalo automático de 100 JJV2 una vez por día UTC. Reconectar no lo duplica.
+- Cambio: **2 JJV2 → 1 JXJV2**. Sin cambio inverso ni dinero real.
+- Gachapón de 500 JJV2, probabilidades visibles y duplicados coleccionables.
+- Fondos de 1,500–2,500 JJV2 y marcos de 1,000–1,800 JJV2. Solo se pueden equipar artículos adquiridos.
+- Ruleta con un cero: resultados y transacciones en servidor, sin depósitos, retiros ni premios de dinero real.
+- Rankings voluntarios: saldo JJV2, gasto en colección y pérdidas acumuladas JXJV2.
+- Foro de ideas con límite de frecuencia y eliminación de publicaciones propias.
 
-- Nunca nunca, ¿Qué pasaría si…? y ¿Quién es más probable?: amigos, familiares, solteros y parejas; normal, más íntimo e intenso. **100 preguntas por combinación, 3,600 textos en total**, mezclados sin repetirse dentro de una ronda. Siempre se puede saltar.
-- Última carta tipo UNO: 2–6 jugadores, 5/7/10 cartas iniciales, manos ocultas entre turnos, reversas y penalizaciones. Las reglas de esta variante aparecen antes de empezar.
-- Baraja inglesa: Ochos locos, Carta alta y Veintiuno en duelo, de 2 a 6 personas. Es una baraja, no un juego para aprender inglés.
-- Gato para dos, lotería original para 2–6 y dibujo con adivinanzas en voz alta para 2–6.
-- Bombitas para dos, con el motor del VS original, teclado y controles táctiles.
-- Billar de bola 8 para dos, con adaptación de la física y reglas del original; reglas de la casa visibles antes de empezar.
-- Varitas: secuencia de reflejos para 2–6 por turnos.
-- Puzle cooperativo con imagen propia o cielo original; las imágenes elegidas permanecen en el dispositivo.
-- Shooter cooperativo de dos naves contra meteoritos. Es un minijuego original sencillo; **no es una adaptación de Soul Knight**.
-- Torneo de reflejos, memoria y cálculo para 2–6.
-- Verdad o reto de convivencia y piano de práctica con audio local, duración y dificultad configurables.
+La ilustración adjunta de ustedes está incluida con la autorización expresa del propietario. La animación SVG de palmaditas continúa en las transiciones. El atlas de personajes original se reutiliza para las skins reservadas y el personaje del titular en Bombitas local.
 
-Estos modos locales no conectan dispositivos, no ocultan información a quien mire físicamente la pantalla y no pagan monedas por resultados calculados en el navegador.
+## Salas en línea
 
-## Preparado, pendiente de activar Supabase
+Cada participante necesita su cuenta y entra con un código. El anfitrión configura la sala antes de empezar.
 
-El propietario confirmó que todavía no tiene el proyecto nuevo. **`config.js` está vacío intencionalmente.** No se ha conectado el proyecto privado de la pareja.
+| Juego | Participantes | Implementación |
+| --- | --- | --- |
+| Última carta tipo UNO | 2–6 | Mano privada, turnos, colores, reversas y penalizaciones en servidor |
+| Baraja inglesa: Ochos locos | 2–6 | Mano privada y validación de jugadas |
+| Baraja inglesa: Veintiuno | 2–6 | Pedir/plantarse por turnos, revelado al finalizar |
+| Baraja inglesa: Carta alta | 2–6 | Cartas ocultas hasta que cada persona las destapa |
+| Nunca nunca | 2–6 | Pregunta compartida, avance controlado por anfitrión |
+| ¿Qué pasaría si…? | 2–6 | Pregunta compartida |
+| ¿Quién es más probable? | 2–6 | Votos sincronizados |
+| Piano estelar | 2–6 | Audio privado compartido, preparación de sonido, reloj y patrón comunes |
+| Gato | 2 | Validación de turnos, casillas y revisión de estado |
 
-El esquema y las pantallas incluyen:
+Las salas caducan a las 24 horas. Las cartas ajenas y el mazo no se envían a los otros jugadores. La función de salas verifica el token con Supabase Auth antes de usar operaciones internas. El cliente no puede elegir otro actor ni escribir el estado de una sala directamente.
 
-- Registro e inicio de sesión por usuario y contraseña; contraseñas gestionadas por Supabase Auth.
-- Perfil persistente con nombre visible, avatar, color y biografía. Reserva de los avatares de Jesús y Julissa mediante asignación administrativa a sus cuentas.
-- 100 JJV2 de regalo una vez al día (fecha UTC), registrados en el servidor.
-- Cambio de **2 JJV2 → 1 JXJV2**, sin cambio inverso.
-- Gachapón de 500 JJV2: cinco criaturas, probabilidades visibles, colección y duplicados.
-- Ruleta con un cero y monedas virtuales; resultados y movimientos validados en servidor, con identificador de operación para evitar cobrar dos veces un reintento.
-- Rankings voluntarios de JJV2 disponibles, JJV2 gastadas en colección y JXJV2 perdidas en el casino.
-- Foro de ideas, con eliminación de publicaciones propias y límite de frecuencia. Moderación administrativa desde la base de datos.
-- Salas de Gato para dos con código, turnos comprobados en servidor, control de revisiones, actualización cada dos segundos y caducidad de 24 horas.
+El piano acepta audio de hasta 30 MB y partidas de 30/60/120 segundos. La canción queda en un bucket privado, accesible solo a miembros de la sala mediante enlaces temporales; el propietario conserva permiso para eliminar su archivo. Todos juegan el mismo patrón, que **no analiza ni transcribe la canción**. Una canción corta se repite hasta completar la duración elegida. La puntuación es recreativa, sin monedas ni garantías contra trampas sofisticadas. El servidor comprueba índices, duplicados, carriles y ventanas temporales; no puede demostrar que una pulsación proceda de una persona.
 
-Las pruebas de la base de datos se ejecutaron en PostgreSQL local emulado con PGlite, con Auth y la función aleatoria sustituidas **solo en el entorno de pruebas**. Falta la comprobación de extremo a extremo contra el proyecto real de Supabase.
+## Modos en el mismo dispositivo
 
-## Activación de cuentas
+Siguen disponibles sin cuenta: los tres juegos de preguntas, Última carta, las tres variantes de baraja inglesa, Gato, lotería, dibujo y adivinanzas, Bombitas, billar de bola 8, varitas, puzle con imagen propia, shooter cooperativo, torneo de reflejos/memoria/cálculo, verdad o reto y práctica de piano.
 
-1. Crear un proyecto nuevo en [Supabase](https://supabase.com/dashboard). No usar la base de datos de Nuestro-Universos.
-2. Abrir SQL Editor y ejecutar `supabase/schema.sql` una sola vez en ese proyecto vacío. Este esquema no es una migración idempotente.
-3. En Authentication, habilitar acceso por correo/contraseña y desactivar la confirmación por correo **solo en este proyecto nuevo**: esta app usa alias internos como `usuario@players.jj.invalid`, no direcciones de correo reales. Ajustar la longitud mínima de contraseña a 10 caracteres. El alias no permite recuperación por correo; una futura recuperación requerirá un correo real verificado o intervención administrativa.
-4. Completar `config.js` con la URL del proyecto y la clave **publishable/anon**. Nunca publicar `service_role`, claves secretas ni la contraseña de la base.
-5. Crear las cuentas de Jesús y Julissa desde la web. Asignar cada skin desde SQL Editor usando el usuario real de cada uno:
+Bombitas, billar y shooter admiten dos personas. Los modos indicados para 2–6 se juegan por turnos o cooperativamente en la misma pantalla. Las etiquetas del catálogo distinguen cada modalidad.
 
-```sql
--- Sustituir los dos nombres por los usuarios creados; no usar estas líneas sin revisarlos.
-update public.profiles set skin='jesus' where username='usuario_real_de_jesus';
-update public.profiles set skin='julissa' where username='usuario_real_de_julissa';
-```
+Los tres juegos de preguntas tienen cuatro públicos —amigos, familiares, solteros y parejas— y tres niveles —normal, más íntimo e intenso—: **100 preguntas por combinación, 3,600 textos**. El banco combina diez decisiones y diez contextos por público/nivel; hay temas comunes entre juegos y algunas frases largas. No son 3,600 situaciones independientes redactadas a mano. Intenso aumenta la profundidad emocional; no contiene contenido sexual explícito. Se puede saltar sin penalización.
 
-Solo el administrador puede asignar esas skins. Ningún cliente puede actualizar saldos, inventario, roles o skins directamente.
+## Instalación y mantenimiento
 
-6. Probar dos cuentas en dispositivos distintos: registro, regalo único, perfil, cambio, cápsula, foro y sala de Gato. Revisar Authentication / rate limits antes de abrir registros a un público amplio.
+El proyecto de Supabase ya está instalado. **No volver a ejecutar schema.sql sobre esta base existente.**
 
-## Publicación en GitHub Pages
+Para reproducirlo en un proyecto vacío, el orden de fuentes SQL es:
 
-La web no necesita compilación ni dependencias de producción. En este repositorio: **Settings → Pages → Deploy from a branch → main → /(root) → Save**. Cuando GitHub termine, la dirección esperada será:
+1. supabase/schema.sql
+2. supabase/multiplayer.sql
+3. supabase/profile-style.sql
+4. supabase/owner-reservations.sql
 
-`https://yisuscraiz.github.io/Una-parte-de-Nuestro-Mundo/`
+Los registros privados de reserva se crean por administración, guardando solo el hash del enlace; los tokens originales nunca se añaden al repositorio.
 
-No dar esa dirección por publicada hasta que GitHub Pages confirme su despliegue. La configuración de Pages no está activada mediante este código.
+Desplegar la función **mundo-room** con index.js, deno.json y sus dependencias engines.js, questions.js y piano-chart.js. Las importaciones relativas deben conservarse o adaptarse al empaquetado. La función usa variables de entorno estándar de Supabase. No incluir claves secretas en la web. La verificación JWT de la puerta de entrada está desactivada porque la función realiza su propia autenticación contra Auth /user en cada solicitud; esto no permite acceso anónimo a salas.
 
-## Vista local y pruebas
+config.js contiene únicamente URL y clave publicable del proyecto nuevo. Authentication tiene registro por contraseña habilitado y confirmación de correo desactivada para los alias internos usuario@players.jj.invalid. No hay recuperación por correo con estos alias: una recuperación requerirá intervención administrativa o incorporar un correo real verificado.
 
-Con Node.js instalado:
+GitHub Pages sirve la rama main desde la raíz. Dirección del proyecto:
 
-```text
-node tools/serve.cjs
-```
+https://yisuscraiz.github.io/Una-parte-de-Nuestro-Mundo/
 
-Abrir `http://127.0.0.1:4173`. No abrir directamente el HTML con `file://`, porque usa módulos.
+## Pruebas y vista local
 
-Para todas las pruebas, instalar la dependencia de desarrollo y ejecutar:
+    node tools/serve.cjs
 
-```text
-npm install
-npm test
-```
+Abrir http://127.0.0.1:4173. No abrir index.html con file://, porque usa módulos.
 
-Pruebas: reparto y partidas completas de cartas con 2–6 jugadores; comodines, penalizaciones y reversa; simulación de billar y Bombitas; instalación SQL, permisos, fondos insuficientes, recompensa diaria, skins reservadas, ruleta idempotente, colección, foro y salas; 36 bancos de preguntas de 100 sin duplicados literales. `contenido-check.cjs` regenera y valida `questions.js` a partir de sus fuentes editoriales.
+    npm install
+    npm test
 
-## Lo que todavía falta
+Hay pruebas de motores de cartas para 2–6, simulación de billar/Bombitas, patrón/puntuación de piano, permisos y operaciones del esquema base, y validación del banco de preguntas.
 
-- Activación de Supabase y pruebas reales de cuentas/salas entre dispositivos.
-- Salas por internet para el resto de juegos. **Conectar Supabase no añade automáticamente estos modos**: requieren implementación adicional.
-- Piano competitivo en sala, almacenamiento y distribución de audio, reloj compartido y sincronización de partidas. El piano actual usa patrones de práctica y no analiza la canción.
-- Skins ilustradas completas para Jesús y Julissa dentro de cada juego; los avatares reservados actuales son símbolos de perfil. Los personajes locales de Bombitas y el shooter son genéricos.
-- Más decoraciones equipables y tienda de fondos/marcos. Actualmente hay color/avatar/biografía y colección de criaturas representadas con emojis.
-- Revisión editorial más amplia de preguntas: hay 3,600 enunciados distintos, pero proceden de 10 decisiones × 10 contextos por público y nivel, reutilizando temas entre los tres juegos; no son 3,600 situaciones independientes redactadas a mano. Intenso significa mayor profundidad emocional, sin contenido sexual explícito.
-- Confirmar a qué juego se refería «soulnight» antes de diseñar esa adaptación.
-- Ampliar los ajustes y equilibrar los nuevos minijuegos con pruebas de personas reales.
+Se realizaron pruebas reales contra Supabase con dos cuentas temporales autorizadas: registro, login, recompensa diaria única, cambio 2:1, aislamiento de saldos, perfil, foro, Gato, siete modos adicionales de salas y audio privado de piano. Se eliminaron las cuentas, sus datos y el audio, y se retiró el endpoint temporal de limpieza. Las compras de decoraciones y reservas de skins se comprobaron en transacciones revertidas.
+
+## Seguridad revisada y límites
+
+Todas las tablas tienen RLS. Saldos, inventario, identidades reservadas y estados de partida no admiten escritura directa de clientes. Las funciones internas de sesiones solo las puede ejecutar service_role; la función Edge valida el usuario antes de llamarlas.
+
+Los asesores de Supabase señalan como intencionales las funciones SECURITY DEFINER que constituyen operaciones limitadas por cuenta, el ranking público con participación voluntaria y tres tablas sin políticas de acceso directo: public.rooms y las tablas privadas de sesiones y reservas. No se debe eliminar sus comprobaciones de actor o conceder acceso directo a esas tablas para silenciar avisos. Referencias: [funciones autenticadas](https://supabase.com/docs/guides/database/database-linter?lint=0029_authenticated_security_definer_function_executable), [ranking público](https://supabase.com/docs/guides/database/database-linter?lint=0028_anon_security_definer_function_executable), [RLS sin política directa](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy).
+
+## Lo que todavía queda
+
+- Prueba presencial de seis dispositivos, sonido simultáneo en distintos navegadores y ajustes de latencia.
+- Automatizar la limpieza de audio de salas caducadas; actualmente el anfitrión tiene permiso para borrarlo y el administrador puede gestionarlo desde Storage.
+- Salas en línea para Bombitas, billar, dibujo, lotería, varitas, puzle, shooter y torneo; actualmente son locales.
+- Pulir animaciones, ampliar personajes absurdos y sustituir más representaciones emoji por arte propio.
+- Revisión editorial completa del banco de preguntas y ampliación de contenido.
+- Confirmar qué título significa «soulnight». El shooter actual es un minijuego original y no una adaptación de Soul Knight.
+- Recuperación de cuenta con un medio verificable y controles de comunidad más amplios.
 
 ## Procedencia
 
-Referencia original: [YisusCraiz/Nuestro-Universos](https://github.com/YisusCraiz/Nuestro-Universos), commit `8664c623894f785e290c140772f6bf096be17523`.
+Referencia: [YisusCraiz/Nuestro-Universos](https://github.com/YisusCraiz/Nuestro-Universos), commit 8664c623894f785e290c140772f6bf096be17523.
 
-`vendor/bombitas-engine.js` conserva el motor original con una exportación ES añadida. `pool-engine.js` adapta `jj_pool_rack` y `jj_pool_shot` de `supabase/33-billar.sql`. El resto de la interfaz y los modos locales se implementaron para este repositorio. No se copiaron las credenciales, datos de cuentas ni fotografías privadas de los puzles del original. Las ilustraciones SVG de bienvenida y carga son originales. La imagen adjunta completa se conserva solo en local y se excluyó de la subida al repositorio público tras el rechazo de la revisión automática.
+vendor/bombitas-engine.js conserva el motor original con exportación ES. pool-engine.js adapta jj_pool_rack y jj_pool_shot. assets/characters/jj-original.png reutiliza el atlas original. No se copiaron las credenciales, cuentas ni fotografías privadas de los puzles de la web de pareja.

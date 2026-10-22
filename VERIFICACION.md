@@ -1,14 +1,29 @@
-# Verificación de la versión inicial
+# Verificación 0.2.0
 
-- Análisis de sintaxis de los módulos JavaScript: correcto.
-- Motores de cartas: reparto de 2–6 personas, 108/52 cartas sin pérdidas, penalizaciones, +4 restringido, reversa con dos personas, ganador, reciclado de mazo y 50 partidas automatizadas completas.
-- Billar: saque en ocho direcciones, posiciones finitas, conservación de bolas, cambio de turno por falta y colocación legal de la blanca.
-- Bombitas: creación del tablero, colocación de bomba, explosión y ganador.
-- SQL en PGlite: instalación completa, separación de perfiles/saldos, rechazo de escritura directa en cartera, regalo diario único, cambio de moneda, fondos insuficientes, rechazo de avatares reservados, transacción idempotente de ruleta, gachapón, límite de foro, sala privada por miembros, ocupación máxima y turnos/revisiones de Gato.
-- Contenido: 3,600 enunciados, 36 grupos de 100 y ausencia de duplicados literales. Revisión de muestras; límite editorial y método de composición documentados en README.
-- Navegador: inicio, catálogo/buscador, Nunca nunca familiares intenso, avance de pregunta, Última carta con seis nombres y ocultación de mano al pasar turno, apertura y saque de billar. Sin errores de consola observados en esas rutas.
-- Vista estrecha de 319 px: corregidas órbitas decorativas que causaban desplazamiento horizontal; no se observó desbordamiento después de corregirlo.
+## Automatizada local
 
-## Límites de esta comprobación
+- Motores de cartas: reparto 2–6, mazos conservados, penalizaciones, comodín +4 restringido, reversa de dos, victoria y 50 partidas completas.
+- Billar: ocho direcciones de saque, coordenadas finitas, faltas y bola en mano.
+- Bombitas: bomba, explosión y ganador.
+- Piano: patrón determinista entre clientes, ventanas de acierto, rechazo de duplicados y datos inválidos.
+- PGlite: instalación y permisos del esquema base, recompensa diaria, economía, perfiles, skins restringidas, foro y Gato.
+- Banco: 36 grupos de 100 enunciados, sin duplicados literales. Límite editorial descrito en README.
 
-No se configuró el servicio de Supabase del usuario ni se probaron cuentas/salas reales contra él. En pruebas SQL se sustituye Auth y el generador de bytes; el esquema de producción conserva pgcrypto. No se completó una auditoría visual de cada juego en todos los tamaños ni una prueba con seis dispositivos. No hay salas de piano ni de los demás juegos, salvo la implementación preparada de Gato. La publicación en GitHub Pages debe confirmarse por separado.
+## Proyecto real de Supabase
+
+- Proyecto nuevo conectado; no se utilizó la base privada de Nuestro-Universos.
+- Registro sin confirmación de correo configurado con autorización expresa del usuario.
+- Dos cuentas temporales autorizadas: registro, login, regalo único, cambio 2:1, aislamiento de cartera, perfil y foro.
+- Sala de Gato entre ambas cuentas.
+- Salas de Última carta, Ochos locos, Carta alta, Veintiuno y los tres juegos de preguntas.
+- Comprobación de privacidad de manos: sin mazo ni manos ajenas en respuestas.
+- Piano: subida WAV temporal, acceso firmado desde la segunda cuenta, preparación de ambos, inicio con reloj común y rechazo de resultado antes de tiempo.
+- Eliminación del audio, cuentas y datos de prueba. Endpoint temporal de limpieza retirado.
+- Compra/equipamiento de fondos y marcos, rechazo de artículos no adquiridos y rechazo de skin ajena: transacción revertida.
+- Activación de reservas Yisus/Julissa, asignación correcta de skin y eliminación del token de metadata: transacción revertida. Las dos reservas definitivas siguen sin reclamar hasta que sus titulares elijan contraseña.
+
+## Navegador y límites
+
+Inicio, imagen adjunta, catálogo, buscador, ajustes, preguntas y partidas locales revisados en pantalla estrecha; sin errores de consola observados en las rutas comprobadas. La vista no sustituye una auditoría completa de cada tamaño de pantalla.
+
+No se probaron seis dispositivos físicos ni reproducción simultánea real en varios navegadores. Las puntuaciones del piano son recreativas y no reparten monedas. Los modos arcade adicionales continúan locales. Los asesores de seguridad mantienen avisos por funciones privilegiadas intencionales; sus límites y referencias están documentados en README.

@@ -4,5 +4,6 @@ node_modules/
 *.log
 .DS_Store
 
-# Referencia adjunta: no publicar el archivo completo.
-assets/julissa-jesus.jpg
+
+# Prueba temporal autorizada, con endpoint de limpieza que se retira al terminar.
+tools/live-smoke.cjs

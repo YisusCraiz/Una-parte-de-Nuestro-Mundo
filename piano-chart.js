@@ -1,0 +1,3 @@
+// Mismo patrón en todos los dispositivos. No transcribe ni analiza el audio.
+export function chart(seed,speed,duration){let s=seed>>>0;const rng=()=>{s^=s<<13;s^=s>>>17;s^=s<<5;return(s>>>0)/4294967296};const notes=[];for(let time=0;time+1800<duration*1000;time+=speed)notes.push({lane:Math.floor(rng()*4),time:time+1600});return notes}
+export function pianoScore(notes,hits){if(!Array.isArray(hits)||hits.length>1000)throw Error('Lista de notas inválida.');const seen=new Set();let score=0;for(const hit of hits){if(!Number.isInteger(hit.index)||seen.has(hit.index)||!notes[hit.index]||!Number.isFinite(hit.time))continue;seen.add(hit.index);if(hit.lane===notes[hit.index].lane&&Math.abs(hit.time-notes[hit.index].time)<=180)score+=10}return score}
