@@ -12,7 +12,7 @@ begin
  if u is null or u !~ '^[a-z0-9_]{3,20}$'then raise exception 'Usuario inválido: usa 3–20 letras, números o guion bajo.';end if;
  select * into reservation from mundo_private.owner_reservations where username=u for update;
  if found then
-  if reservation.claimed_by is not null or token is null or encode(extensions.digest(token,'sha256'),'hex')<>reservation.invitation_hash then raise exception 'Este nombre está reservado. Usa el enlace privado de activación.';end if;
+  if reservation.claimed_by is not null or reservation.claimed_at is not null or token is null or encode(extensions.digest(token,'sha256'),'hex')<>reservation.invitation_hash then raise exception 'Este nombre está reservado. Usa el enlace privado de activación.';end if;
   insert into public.profiles(id,username,display_name,skin,avatar)values(new.id,u,reservation.display_name,reservation.skin,case when reservation.skin='jesus'then '🤵🏻'else '👩🏻'end);
   update mundo_private.owner_reservations set claimed_by=new.id,claimed_at=now()where username=u;
   update auth.users set raw_user_meta_data=raw_user_meta_data-'owner_invitation'where id=new.id;
@@ -20,3 +20,4 @@ begin
  insert into public.wallets(user_id)values(new.id);return new;
 end $$;
 revoke all on function public.new_player()from public,anon,authenticated;
+

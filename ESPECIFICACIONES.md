@@ -64,8 +64,9 @@ Foro para sugerir juegos, mejoras y reportar problemas. Vincular publicaciones c
 1. Catálogo VS identificado: Bombitas, Última carta, baraja inglesa, billar, gato, varitas, puzle y verdad o reto. Sus adaptaciones locales están en la versión inicial.
 2. El usuario proporcionó un repositorio nuevo para la web. GitHub Pages requiere activación en sus ajustes.
 3. Confirmar la referencia «soulnight» y la frecuencia de la recompensa si difieren de las interpretaciones anotadas.
-4. El usuario confirmó que aún no tiene el proyecto nuevo de Supabase y lo facilitará después. El esquema y los clientes están preparados; falta activar y comprobar el servicio real, y desarrollar las salas adicionales. No describir la plataforma como multijugador en línea completa.
+4. Supabase ya está conectado y probado con cuentas temporales eliminadas al terminar. Cartas, preguntas, Gato y piano tienen salas en línea; los demás modos siguen locales. Consultar README.md para el estado y los límites actuales.
 
 ## Comprobaciones de entrega
 
 Verificar registro e inicio de sesión, aislamiento entre perfiles, reserva de skins, recompensa sin duplicados, conversión de monedas, reconexión a salas, límites de jugadores, sincronización de audio, banco de preguntas completo y navegación móvil. Distinguir explícitamente las funciones listas de cualquier función pendiente.
+
