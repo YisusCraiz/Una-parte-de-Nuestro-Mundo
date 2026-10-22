@@ -1,0 +1,1 @@
+{"name":"una-parte-de-nuestro-mundo","version":"0.1.0","private":true,"type":"module","scripts":{"test":"node tests/engines.test.js && node tests/pool.test.js && node tests/backend.cjs && node contenido-check.cjs","start":"node tools/serve.cjs"},"devDependencies":{"@electric-sql/pglite":"0.5.10"}}
