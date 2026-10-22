@@ -1,0 +1,24 @@
+{
+  "id": "./",
+  "name": "Una parte de Nuestro Mundo",
+  "short_name": "Nuestro Mundo",
+  "description": "El universo de juegos de Jesús y Julissa. Una partida más, juntos.",
+  "lang": "es-MX",
+  "start_url": "./#inicio",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#10101c",
+  "theme_color": "#16152b",
+  "orientation": "any",
+  "categories": ["games", "entertainment"],
+  "prefer_related_applications": false,
+  "icons": [
+    {"src":"assets/icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"assets/icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any"},
+    {"src":"assets/icons/icon-maskable-512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}
+  ],
+  "shortcuts": [
+    {"name":"Elegir un juego","short_name":"Juegos","url":"./#juegos"},
+    {"name":"Mi perfil","short_name":"Perfil","url":"./#perfil"}
+  ]
+}

@@ -1,0 +1,4 @@
+import assert from 'node:assert/strict';
+globalThis.window={MUNDO_CONFIG:{supabaseUrl:'https://example.supabase.co',supabasePublishableKey:'sb_publishable_test'}};
+for(const [name,status]of [['offline',0],['limited',429],['invalid',400]]){let stored=JSON.stringify({user:{id:'test'},refresh_token:'test-only',expires_at:1});globalThis.localStorage={getItem:()=>stored,setItem:(_,v)=>stored=v,removeItem:()=>stored=null};globalThis.fetch=async()=>{if(status===0)throw TypeError('Failed to fetch');return new Response(JSON.stringify({error_description:'Test response'}),{status})};const{api}=await import('../api.js?test='+name);await assert.rejects(()=>api.rpc('claim_daily'));assert.equal(Boolean(stored),status!==400,'Una caída de red o límite de peticiones no debe borrar la sesión.');}
+console.log('Sesión: sin conexión y límites preservan el acceso; una sesión inválida se elimina: OK');

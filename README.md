@@ -1,6 +1,6 @@
 # Una parte de Nuestro Mundo
 
-Portal de Jesús y Julissa. Versión **0.2.0**, conectado al proyecto Supabase **Una parte de nuestro universo**.
+Portal de Jesús y Julissa. Versión **0.3.0**, conectado al proyecto Supabase **Una parte de nuestro universo**.
 
 ## Cuentas, monedas y personalización
 
@@ -44,6 +44,14 @@ Siguen disponibles sin cuenta: los tres juegos de preguntas, Última carta, las 
 Bombitas, billar y shooter admiten dos personas. Los modos indicados para 2–6 se juegan por turnos o cooperativamente en la misma pantalla. Las etiquetas del catálogo distinguen cada modalidad.
 
 Los tres juegos de preguntas tienen cuatro públicos —amigos, familiares, solteros y parejas— y tres niveles —normal, más íntimo e intenso—: **100 preguntas por combinación, 3,600 textos**. El banco combina diez decisiones y diez contextos por público/nivel; hay temas comunes entre juegos y algunas frases largas. No son 3,600 situaciones independientes redactadas a mano. Intenso aumenta la profundidad emocional; no contiene contenido sexual explícito. Se puede saltar sin penalización.
+
+## Instalar en el teléfono
+
+Abre la web publicada y usa **Instalar app** al pie de la página. En Android, Chrome permite instalar desde su menú; en iPhone, abre Safari y elige Compartir → Añadir a pantalla de inicio y, si aparece, Abrir como app web.
+
+Incluye iconos propios y apertura independiente. Después de la primera carga completa, los juegos locales pueden abrirse sin conexión. Las cuentas, monedas y salas necesitan internet. El caché solo conserva archivos públicos de la aplicación; no guarda respuestas de Supabase ni audio privado. Una pérdida de conexión no borra la sesión.
+
+Las nuevas versiones muestran un botón para actualizar; no se recarga automáticamente una partida abierta. Al modificar archivos publicados, cambiar también la versión del caché en sw.js. Los iconos se regeneran con npm run build:icons.
 
 ## Instalación y mantenimiento
 

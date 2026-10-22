@@ -1,3 +1,10 @@
+# Verificación 0.3.0
+
+- Manifest: alcance relativo compatible con GitHub Pages, iconos de 192/512 píxeles y formato maskable.
+- Caché sin conexión: archivos presentes, navegación local, exclusión de API y audio privado; actualización voluntaria y limpieza limitada al caché propio.
+- Sesión: fallos de red y límites de solicitudes conservan la sesión; credenciales de refresco inválidas sí la eliminan.
+- Navegador: carga inicial y preparación sin conexión completadas. No se ha instalado en teléfonos físicos durante esta comprobación.
+
 # Verificación 0.2.0
 
 ## Automatizada local

@@ -5,12 +5,12 @@ let refreshing;
 const save=s=>{session=s;if(s)localStorage.setItem('mundo-session',JSON.stringify(s));else localStorage.removeItem('mundo-session')};
 async function raw(path,body,token,method='POST'){
  const r=await fetch(cfg.supabaseUrl+path,{method,headers:{apikey:cfg.supabasePublishableKey,'Content-Type':'application/json',...(token?{Authorization:'Bearer '+token}:{})},...(body===undefined?{}:{body:JSON.stringify(body)})});
- const data=await r.json().catch(()=>null);if(!r.ok)throw Error(data?.msg||data?.message||data?.error_description||'No se pudo completar la operación.');return data;
+ const data=await r.json().catch(()=>null);if(!r.ok){const error=Error(data?.msg||data?.message||data?.error_description||'No se pudo completar la operación.');error.status=r.status;throw error}return data;
 }
 async function token(){
  if(!session)return null;
  if(Date.now()/1000>(session.expires_at||0)-90){
-  refreshing ||= raw('/auth/v1/token?grant_type=refresh_token',{refresh_token:session.refresh_token}).then(d=>{save({...d,expires_at:Date.now()/1000+d.expires_in});return session.access_token}).catch(e=>{save(null);throw e}).finally(()=>refreshing=null);
+  refreshing ||= raw('/auth/v1/token?grant_type=refresh_token',{refresh_token:session.refresh_token}).then(d=>{save({...d,expires_at:Date.now()/1000+d.expires_in});return session.access_token}).catch(e=>{if(e.status===400||e.status===401)save(null);throw e}).finally(()=>refreshing=null);
   return refreshing;
  }return session.access_token;
 }
