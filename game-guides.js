@@ -5,14 +5,15 @@ export const GUIDES={
  uno:['Elige una partida local o una sala de 2 a 6.','Juega una carta del mismo color o valor; si no puedes, roba.','Quédate sin cartas antes que tus rivales. Las manos locales se ocultan al pasar.'],
  playingcards:['Elige Ochos locos, Veintiuno o Carta alta.','Configura de 2 a 6 personas y sigue el turno indicado.','Cada variante explica sus reglas antes del reparto.'],
  ttt:['Jueguen en este teléfono o creen una sala para dos.','Toca una casilla vacía cuando sea tu turno.','Forma tres símbolos en fila, columna o diagonal.'],
- lottery:['Escribe de 2 a 6 nombres: cada persona recibe su tablero.','Canta una figura y cambia de tablero para marcarla.','Completa una fila, columna o diagonal para ganar.'],
- draw:['Decidan quién dibuja y la duración del turno.','Solo quien dibuja mira la palabra; luego la oculta.','Dibuja con el dedo o ratón y los demás adivinan en voz alta.'],
+ lottery:['Elige sala en línea o juego local y ajusta cómo se gana.','En línea puedes elegir tus figuras y guardar tu propio tablero.','Marca solo figuras cantadas; la sala comprueba quién completa el patrón.'],
+ draw:['Crea una sala con rondas, tiempo y palabras propias, o juega local.','Solo quien dibuja ve la palabra; los demás escriben sus respuestas.','Dibuja con el dedo o ratón y acumula puntos con tu grupo.'],
  piano:['Elige práctica local o una sala con amigos.','Carga tu canción y selecciona duración y dificultad.','Toca los cuatro carriles en la línea rosa; en teclado usa D, F, J y K.'],
- truth:['Elige Verdad para una pregunta o Reto para una actividad.','Lee en voz alta y participa solo si quieres.','Si algo incomoda, elige otra opción sin penalización.'],
- bombitas:['Dos personas comparten el dispositivo.','Muévanse con los controles que aparecen en la arena.','Pongan bombas, aléjense de la explosión y sobrevivan.'],
- pool:['Dos personas juegan por turnos.','Arrastra para apuntar y ajustar la fuerza del tiro.','Mete tu grupo de bolas y deja la negra para el final.'],
- wands:['Configura de 2 a 6 personas y pasa el dispositivo.','Mira la secuencia de hechizos antes de que se oculte.','Repite los símbolos en el orden correcto.'],
- puzzle:['Elijan su imagen y el tamaño del puzle.','Toca dos piezas para intercambiarlas.','Reconstruyan la imagen entre todos.'],
- shooter:['Dos pilotos comparten teclado o controles táctiles.','Muévanse y disparen para destruir meteoritos.','Protejan sus escudos y resistan juntos hasta el final.'],
+ truth:['Crea una sala y elige grupo, profundidad y tarjetas propias.','En tu turno elige verdad o reto; todos ven la misma tarjeta.','Puedes pasar sin penalización. También sigue disponible el modo local.'],
+ bombitas:['Juega contra otra persona desde tu teléfono o en modo local.','Ajusta tiempo, alcance, bombas, mejoras y cierre del mapa.','Muévete con flechas o botones y aléjate de tus propias explosiones.'],
+ pool:['Dos personas, en sala o en el mismo dispositivo.','Toca la mesa para apuntar y usa el deslizador para ajustar la fuerza.','Mete tu grupo y deja la negra para el final; el servidor valida cada tiro en línea.'],
+ wands:['Elige sala en línea o turnos locales, ritmo y errores permitidos.','En línea todos reciben las mismas flechas y el mismo reloj.','Pulsa la dirección que aparece antes de que termine su tiempo.'],
+ puzzle:['Elige una sala cooperativa o local y la cantidad de piezas.','Puedes compartir una imagen privada y decidir si se juega por turnos.','Toca dos piezas para intercambiarlas y reconstruyan la imagen entre todos.'],
+ shooter:['En línea juegan de 2 a 4 pilotos; el modo local sigue para dos.','Decidan duración, escudos y dificultad antes de despegar.','Mueve tu nave con flechas, botones o arrastrándola. Dispara automáticamente.'],
  tournament:['Escribe de 2 a 6 nombres para empezar la copa.','Supera reflejos, memoria y cálculo por turnos.','Los demás apartan la vista; gana la mayor puntuación total.']
 };
+

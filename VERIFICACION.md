@@ -1,3 +1,13 @@
+# Verificación 0.5.0
+
+- Limpieza terminada: sesiones revocadas y cuentas, salas e imágenes de prueba eliminadas; comprobación final con cero registros temporales.
+
+- Pruebas de los ocho motores: validación de ajustes, tablero propio, patrones de victoria, marcas no cantadas rechazadas, palabra oculta, trazos y límites, puntuación, turnos, puzle, fuerza/turno de billar, tiempos/resultados de varitas, arenas y autoridad de anfitrión.
+- Dos cuentas temporales en el proyecto real: salas de los ocho juegos, lotería hasta victoria, dibujo visto desde otra sesión, verdad personalizada, imagen privada compartida, puzle por turnos y tiro de billar. Varitas comprobó un resultado con la secuencia y el reloj de la sala.
+- WebSocket real: ambas cuentas se autorizaron en canales privados y el segundo cliente recibió un mensaje del primero. La primera conexión calentó las particiones del servicio; el reintento completó correctamente.
+- Navegador: dos orígenes locales con sesiones separadas; tablero propio e invitado en lotería, arenas de Bombitas y Expedición recibidas en ambas pantallas, controles e indicadores. No se probaron cuatro/seis teléfonos físicos simultáneos.
+- Permisos: authenticated no puede leer sesiones ni reservas, ni ejecutar la escritura interna; pertenencia y emisor se comprueban al autorizar canales. Los avisos anteriores de asesores no se ampliaron.
+
 # Verificación 0.4.0
 
 - Pruebas del casino en PGlite: rangos, pagos, manos sin duplicados, conservación, clasificación de once manos conocidas, selección inválida, aislamiento por cuenta, acceso anónimo rechazado y reintentos sin cobro doble.
@@ -41,4 +51,5 @@
 
 Inicio, imagen adjunta, catálogo, buscador, ajustes, preguntas y partidas locales revisados en pantalla estrecha; sin errores de consola observados en las rutas comprobadas. La vista no sustituye una auditoría completa de cada tamaño de pantalla.
 
-No se probaron seis dispositivos físicos ni reproducción simultánea real en varios navegadores. Las puntuaciones del piano son recreativas y no reparten monedas. Los modos arcade adicionales continúan locales. Los asesores de seguridad mantienen avisos por funciones privilegiadas intencionales; sus límites y referencias están documentados en README.
+No se probaron seis dispositivos físicos ni reproducción simultánea real en varios navegadores. Las puntuaciones del piano son recreativas y no reparten monedas. En 0.2 los arcade adicionales eran locales; desde 0.5 se añadieron las salas descritas arriba. Los asesores de seguridad mantienen avisos por funciones privilegiadas intencionales; sus límites y referencias están documentados en README.
+

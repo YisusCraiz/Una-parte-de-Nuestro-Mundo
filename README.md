@@ -1,6 +1,6 @@
 # Una parte de Nuestro Mundo
 
-Portal de Jesús y Julissa. Versión **0.4.0**, conectado al proyecto Supabase **Una parte de nuestro universo**.
+Portal de Jesús y Julissa. Versión **0.5.0**, conectado al proyecto Supabase **Una parte de nuestro universo**.
 
 ## Novedades visuales y casino
 
@@ -29,23 +29,30 @@ La ilustración adjunta de ustedes está incluida con la autorización expresa d
 
 ## Salas en línea
 
-Cada participante necesita su cuenta y entra con un código. El anfitrión configura la sala antes de empezar.
+Cada participante necesita su cuenta y entra con un código. El anfitrión configura las reglas antes de comenzar; todos pueden leerlas en la sala. Se puede preparar una revancha al finalizar. Las salas caducan a las 24 horas.
 
-| Juego | Participantes | Implementación |
+| Juego | Personas | Ajustes y funcionamiento |
 | --- | --- | --- |
-| Última carta tipo UNO | 2–6 | Mano privada, turnos, colores, reversas y penalizaciones en servidor |
-| Baraja inglesa: Ochos locos | 2–6 | Mano privada y validación de jugadas |
-| Baraja inglesa: Veintiuno | 2–6 | Pedir/plantarse por turnos, revelado al finalizar |
-| Baraja inglesa: Carta alta | 2–6 | Cartas ocultas hasta que cada persona las destapa |
-| Nunca nunca | 2–6 | Pregunta compartida, avance controlado por anfitrión |
-| ¿Qué pasaría si…? | 2–6 | Pregunta compartida |
-| ¿Quién es más probable? | 2–6 | Votos sincronizados |
-| Piano estelar | 2–6 | Audio privado compartido, preparación de sonido, reloj y patrón comunes |
-| Gato | 2 | Validación de turnos, casillas y revisión de estado |
+| Última carta / baraja inglesa | 2–6 | Manos privadas, turnos y validación en servidor |
+| Nunca nunca / ¿Qué pasaría si…? / ¿Quién es más probable? | 2–6 | Público, profundidad, preguntas y votos compartidos |
+| Piano estelar | 2–6 | Audio privado y reloj/patrón compartidos |
+| Gato | 2 | Turnos y casillas validados |
+| Lotería | 2–6 | Cada quien compone su tablero de 9 o 16 figuras; baraja de nombres/emojis propia; fila/columna/diagonal, esquinas o tablero completo; canto manual o cada 5/10/15 s |
+| Dibuja y adivina | 2–6 | Palabras propias, 1–3 vueltas, 45–120 s por dibujo, pista de longitud opcional; lienzo y respuestas compartidas, palabra visible solo para quien dibuja |
+| Verdad o reto | 2–6 | Grupo, profundidad, listas propias, 10/20/30 turnos, tiempo opcional y derecho a pasar |
+| Billar | 2 | Física validada por el servidor, animación del tiro, fuerza máxima, ayuda de puntería, saque y repetición de turno configurables |
+| Bombitas | 2 | Controles desde cada dispositivo; duración, alcance, bombas, mecha, mejoras y cierre del mapa |
+| Duelo de varitas | 2–6 | Secuencia y reloj comunes; 10/20/40 flechas, ritmo y errores; resultados comprobados al final |
+| Puzle compartido | 2–6 | 9/16/25 piezas, cooperativo libre o turnos, referencia opcional y subida privada de imagen |
+| Expedición del universo | 2–4 | Cooperativo en tiempo real; duración, escudos y dificultad |
 
-Las salas caducan a las 24 horas. Las cartas ajenas y el mazo no se envían a los otros jugadores. La función de salas verifica el token con Supabase Auth antes de usar operaciones internas. El cliente no puede elegir otro actor ni escribir el estado de una sala directamente.
+Dibujo, lotería, billar y puzle se guardan con revisión del servidor; las jugadas de un estado antiguo se rechazan o se recuperan según la acción. El dibujo sincroniza trazos al soltarlos o por segmentos; no es transmisión de vídeo. El límite por lienzo es de 160 trazos de hasta 60 puntos; limpiar libera espacio.
 
-El piano acepta audio de hasta 30 MB y partidas de 30/60/120 segundos. La canción queda en un bucket privado, accesible solo a miembros de la sala mediante enlaces temporales; el propietario conserva permiso para eliminar su archivo. Todos juegan el mismo patrón, que **no analiza ni transcribe la canción**. Una canción corta se repite hasta completar la duración elegida. La puntuación es recreativa, sin monedas ni garantías contra trampas sofisticadas. El servidor comprueba índices, duplicados, carriles y ventanas temporales; no puede demostrar que una pulsación proceda de una persona.
+Bombitas y Expedición usan canales privados de Supabase Realtime. Cada cuenta solo puede enviar por su propio canal; los miembros escuchan los de su sala y solo el canal del anfitrión determina la simulación. El anfitrión debe mantener la pestaña activa; la arena espera si faltan controles durante más de 2.5 s. Hay puntos de recuperación cada seis segundos: una recarga del anfitrión puede recuperar con unos segundos de diferencia. No hay migración automática del anfitrión ni premios de monedas. Varitas conserva las pulsaciones locales durante la ronda y valida índices, tiempos, duplicados y puntuación al enviarlas; no demuestra que sean pulsaciones humanas. Estos modos son recreativos, sin protección competitiva contra un anfitrión o cliente modificado.
+
+Las imágenes propias del puzle se reducen a 1200 px y se suben a un bucket privado de hasta 5 MB por imagen. Se accede con enlaces temporales para miembros; no entran al caché de la PWA. Las tablas de lotería se personalizan con figuras de texto y emojis; esta entrega no incluye cargar fotografías para cada casilla.
+
+El piano acepta audio de hasta 30 MB y partidas de 30/60/120 segundos. La canción queda privada para miembros. Todos juegan el mismo patrón, que no analiza ni transcribe la canción. La puntuación es recreativa y no reparte monedas.
 
 ## Modos en el mismo dispositivo
 
@@ -74,10 +81,11 @@ Para reproducirlo en un proyecto vacío, el orden de fuentes SQL es:
 3. supabase/profile-style.sql
 4. supabase/owner-reservations.sql
 5. supabase/casino.sql
+6. supabase/party-online.sql
 
 Los registros privados de reserva se crean por administración, guardando solo el hash del enlace; los tokens originales nunca se añaden al repositorio.
 
-Desplegar la función **mundo-room** con index.js, deno.json y sus dependencias engines.js, questions.js y piano-chart.js. Las importaciones relativas deben conservarse o adaptarse al empaquetado. La función usa variables de entorno estándar de Supabase. No incluir claves secretas en la web. La verificación JWT de la puerta de entrada está desactivada porque la función realiza su propia autenticación contra Auth /user en cada solicitud; esto no permite acceso anónimo a salas.
+Desplegar la función **mundo-room** con index.js, deno.json y sus dependencias engines.js, questions.js, piano-chart.js, party-engine.js y pool-engine.js. Las importaciones relativas deben conservarse o adaptarse al empaquetado. La función usa variables de entorno estándar de Supabase. No incluir claves secretas en la web. La verificación JWT de la puerta de entrada está desactivada porque la función realiza su propia autenticación contra Auth /user en cada solicitud; esto no permite acceso anónimo a salas.
 
 config.js contiene únicamente URL y clave publicable del proyecto nuevo. Authentication tiene registro por contraseña habilitado y confirmación de correo desactivada para los alias internos usuario@players.jj.invalid. No hay recuperación por correo con estos alias: una recuperación requerirá intervención administrativa o incorporar un correo real verificado.
 
@@ -121,3 +129,6 @@ Referencia: [YisusCraiz/Nuestro-Universos](https://github.com/YisusCraiz/Nuestro
 vendor/bombitas-engine.js conserva el motor original con exportación ES. pool-engine.js adapta jj_pool_rack y jj_pool_shot. assets/characters/jj-original.png reutiliza el atlas original. No se copiaron las credenciales, cuentas ni fotografías privadas de los puzles de la web de pareja.
 
 El casino nuevo usa envolturas SECURITY INVOKER en public y operaciones privilegiadas en jj_casino, fuera de los esquemas expuestos. Estas validan auth.uid(), bloquean la cartera por operación y deniegan leer/escribir la tabla del mazo. La tabla tiene RLS sin políticas a propósito: solo las operaciones internas pueden acceder. Aviso informativo correspondiente: https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy . Los avisos anteriores de funciones públicas y protección de contraseñas no fueron modificados por esta entrega.
+
+Realtime sigue el protocolo documentado en https://supabase.com/docs/guides/realtime/protocol y su autorización por canal en https://supabase.com/docs/guides/realtime/authorization . Las políticas consultan pertenencia, emisor, estado y caducidad en un esquema privado; el navegador no puede leer sesiones completas ni reservas de propietarios.
+
