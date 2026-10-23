@@ -1,0 +1,14 @@
+{
+  "tool": "Built-in image_gen",
+  "reference": "Ilustración adjunta autorizada por el usuario: Jesús y Julissa.",
+  "assets": [
+    {
+      "path": "assets/art/headpat-strip.webp",
+      "prompt": "Cuatro fotogramas consecutivos: Jesús, pelo rizado oscuro, gafas y sudadera negra, da palmaditas suaves en la cabeza de Julissa, pelo largo castaño, lazo y suéter beige, sonriendo. Mantener identidad y estilo chibi de la referencia; posiciones constantes, fondo violeta oscuro #16152b, detalles lavanda #b5a0ff y rosa #f4a6c5; sin texto."
+    },
+    {
+      "path": "assets/art/covers/*.webp",
+      "prompt": "Hoja de ilustraciones de 4 × 4 con Jesús y Julissa de la referencia, escenas de secretos, cartas de colores, señalar, planetas imaginados, baraja, gato, lotería, dibujo, piano, verdad o reto, bombas de juguete, billar, varitas, puzle, naves y trofeo. Estilo chibi detallado y acogedor, fondo violeta oscuro, lavanda y rosa, props grandes y centrados; sin etiquetas ni marcas. Recortes de la hoja para cada portada."
+    }
+  ]
+}

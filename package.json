@@ -1,10 +1,10 @@
 {
   "name": "una-parte-de-nuestro-mundo",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "type": "module",
   "scripts": {
-    "test": "node tests/engines.test.js && node tests/pool.test.js && node tests/piano.test.js && node tests/backend.cjs && node contenido-check.cjs && node tests/pwa.test.cjs && node tests/session-offline.test.js",
+    "test": "node tests/engines.test.js && node tests/pool.test.js && node tests/piano.test.js && node tests/backend.cjs && node contenido-check.cjs && node tests/pwa.test.cjs && node tests/session-offline.test.js && node tests/casino.cjs",
     "start": "node tools/serve.cjs",
     "build:icons": "node tools/build-icons.cjs"
   },

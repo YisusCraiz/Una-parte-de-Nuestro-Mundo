@@ -1,3 +1,11 @@
+# Verificación 0.4.0
+
+- Pruebas del casino en PGlite: rangos, pagos, manos sin duplicados, conservación, clasificación de once manos conocidas, selección inválida, aislamiento por cuenta, acceso anónimo rechazado y reintentos sin cobro doble.
+- Base real: ruleta numérica, carrera y póker ejecutados en una transacción revertida. No quedaron usuarios ni fondos de prueba. Tabla de mazos no accesible a authenticated; RPC de póker no accesible a anon.
+- Asesor de seguridad: ninguna función privilegiada nueva expuesta en public. jj_casino.poker tiene RLS sin políticas por diseño y acceso directo revocado. Los avisos previos de funciones y contraseñas siguen documentados en README.
+- Navegador: giro de práctica, carrera, conservar/cambiar cartas, guías, portadas y recuento de votos locales. Revisión visual a 390 px de ancho; no sustituye pruebas en teléfonos físicos.
+- Pruebas de PWA y sesión, motores de cartas y piano correctas. Nuevos recursos incluidos en caché 0.4.0.
+
 # Verificación 0.3.0
 
 - Manifest: alcance relativo compatible con GitHub Pages, iconos de 192/512 píxeles y formato maskable.

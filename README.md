@@ -1,6 +1,16 @@
 # Una parte de Nuestro Mundo
 
-Portal de Jesús y Julissa. Versión **0.3.0**, conectado al proyecto Supabase **Una parte de nuestro universo**.
+Portal de Jesús y Julissa. Versión **0.4.0**, conectado al proyecto Supabase **Una parte de nuestro universo**.
+
+## Novedades visuales y casino
+
+- 16 portadas originales con Jesús y Julissa en cada juego, conservando violeta, lavanda y rosa.
+- Carga con cuatro fotogramas de palmaditas basados en la referencia adjunta; respeta movimiento reducido. Guías de tres pasos antes de cada minijuego y votación local por persona con recuento final.
+- Ruleta animada de rojo/negro (×2), ruleta numérica de 0 a 36 (×36), carrera de cuatro peluches equiprobables (×3) y póker individual de cinco cartas con un cambio. Las devoluciones incluyen la apuesta. Cada juego muestra reglas y pagos.
+- Práctica sin cuenta ni monedas. Modo JXJV2 autenticado, saldo calculado en servidor y solicitudes recuperables sin duplicar cobros. Las animaciones representan el resultado del servidor, no modifican las probabilidades.
+- Póker: una mano pendiente por cuenta, mazo privado, selección de cartas conservadas, pago único y recuperación tras salir. No es una mesa de póker multijugador.
+
+Arte generado con la herramienta integrada image_gen; archivos en assets/art/headpat-strip.webp y assets/art/covers/. Prompts y referencia documentados en assets/art/GENERACION.json.
 
 ## Cuentas, monedas y personalización
 
@@ -63,6 +73,7 @@ Para reproducirlo en un proyecto vacío, el orden de fuentes SQL es:
 2. supabase/multiplayer.sql
 3. supabase/profile-style.sql
 4. supabase/owner-reservations.sql
+5. supabase/casino.sql
 
 Los registros privados de reserva se crean por administración, guardando solo el hash del enlace; los tokens originales nunca se añaden al repositorio.
 
@@ -108,3 +119,5 @@ Los asesores de Supabase señalan como intencionales las funciones SECURITY DEFI
 Referencia: [YisusCraiz/Nuestro-Universos](https://github.com/YisusCraiz/Nuestro-Universos), commit 8664c623894f785e290c140772f6bf096be17523.
 
 vendor/bombitas-engine.js conserva el motor original con exportación ES. pool-engine.js adapta jj_pool_rack y jj_pool_shot. assets/characters/jj-original.png reutiliza el atlas original. No se copiaron las credenciales, cuentas ni fotografías privadas de los puzles de la web de pareja.
+
+El casino nuevo usa envolturas SECURITY INVOKER en public y operaciones privilegiadas en jj_casino, fuera de los esquemas expuestos. Estas validan auth.uid(), bloquean la cartera por operación y deniegan leer/escribir la tabla del mazo. La tabla tiene RLS sin políticas a propósito: solo las operaciones internas pueden acceder. Aviso informativo correspondiente: https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy . Los avisos anteriores de funciones públicas y protección de contraseñas no fueron modificados por esta entrega.
