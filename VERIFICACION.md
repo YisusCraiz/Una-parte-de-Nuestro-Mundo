@@ -1,3 +1,8 @@
+# Verificación 0.5.1
+
+- Sarai: retrato chibi con transparencia verificada y tres portadas de 600 × 400 con el trío completo. Recursos optimizados como WebP.
+- Revisión del catálogo y nombres accesibles; las portadas del trío se muestran completas en pantallas estrechas. Precarga PWA actualizada y comprobada.
+
 # Verificación 0.5.0
 
 - Limpieza terminada: sesiones revocadas y cuentas, salas e imágenes de prueba eliminadas; comprobación final con cero registros temporales.
@@ -52,4 +57,3 @@
 Inicio, imagen adjunta, catálogo, buscador, ajustes, preguntas y partidas locales revisados en pantalla estrecha; sin errores de consola observados en las rutas comprobadas. La vista no sustituye una auditoría completa de cada tamaño de pantalla.
 
 No se probaron seis dispositivos físicos ni reproducción simultánea real en varios navegadores. Las puntuaciones del piano son recreativas y no reparten monedas. En 0.2 los arcade adicionales eran locales; desde 0.5 se añadieron las salas descritas arriba. Los asesores de seguridad mantienen avisos por funciones privilegiadas intencionales; sus límites y referencias están documentados en README.
-

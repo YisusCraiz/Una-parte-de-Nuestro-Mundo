@@ -40,7 +40,8 @@ let loadingCount=0;
 async function loading(fn){loadingCount++;const started=performance.now();$('#loading').hidden=false;if(!$('#loading').open)$('#loading').showModal();try{return await fn()}finally{const minimum=matchMedia('(prefers-reduced-motion: reduce)').matches?0:700;await new Promise(r=>setTimeout(r,Math.max(0,minimum-(performance.now()-started))));if(--loadingCount===0){$('#loading').close();$('#loading').hidden=true}}}
 async function guard(button,fn){if(button.disabled)return;button.disabled=true;try{await fn()}catch(e){fail(e)}finally{button.disabled=false}}
 function title(name,desc){return `<div class="page-title"><span class="eyebrow">JESÚS & JULISSA · JJV2</span><h1>${name}</h1><p class="lead">${desc}</p></div>`}
-function art(g,extra=''){return `<div class="game-art ${extra}" style="background-image:url('assets/art/covers/${g.id}.webp')" role="img" aria-label="Jesús y Julissa en ${esc(g.title)}"></div>`}
+const friendCovers=new Set(['uno','lottery','draw']);
+function art(g,extra=''){const withSarai=friendCovers.has(g.id);return `<div class="game-art ${extra}${withSarai?' trio-art':''}" style="background-image:url('assets/art/covers/${g.id}${withSarai?'-sarai':''}.webp')" role="img" aria-label="${withSarai?'Jesús, Julissa y Sarai':'Jesús y Julissa'} en ${esc(g.title)}"></div>`}
 
 function card(g){return `<article class="game-card"><div class="game-cover" style="--cover:${g.color};--cover-glow:${g.glow||'#b5a0ff20'}"><span class="badge">${g.pending?'PRÓXIMAMENTE':g.group==='conectar'?'PARA CONOCERNOS':'UNA PARTIDA MÁS'}</span>${art(g)}<span class="cover-play" aria-hidden="true">↗</span></div><div class="card-content"><h3>${g.title}</h3><p>${g.desc}</p><div class="card-bottom"><span>${g.players}</span><button aria-label="Jugar ${g.title}" data-play="${g.id}">${g.pending?'Ver estado':'Jugar ↗'}</button></div></div></article>`}
 function filters(){return `<div class="filters">${[['todos','Todos'],['conectar','Conectar'],['mesa','De mesa'],['arcade','Arcade']].map(([id,label])=>`<button class="chip ${category===id?'active':''}" data-filter="${id}">${label}</button>`).join('')}</div>`}
@@ -89,4 +90,3 @@ function activationLink(){if(!location.hash.startsWith('#activar?'))return;const
 window.addEventListener('hashchange',()=>{close();loading(async()=>{render();activationLink();window.scrollTo({top:0,behavior:'instant'})})});$('#refresh').onclick=()=>location.reload();
 async function restoreAccount(){if(!api.user||!configured||!navigator.onLine)return;await loading(async()=>{try{await api.rpc('claim_daily');await refreshAccount();accountButton();render()}catch(e){fail(e)}})}
 window.addEventListener('online',restoreAccount);render();accountButton();activationLink();restoreAccount();
-

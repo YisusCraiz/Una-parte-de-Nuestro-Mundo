@@ -1,6 +1,10 @@
 # Una parte de Nuestro Mundo
 
-Portal de Jesús y Julissa. Versión **0.5.0**, conectado al proyecto Supabase **Una parte de nuestro universo**.
+Portal de Jesús y Julissa. Versión **0.5.1**, conectado al proyecto Supabase **Una parte de nuestro universo**.
+
+## Sarai en nuestro mundo
+
+Sarai tiene un personaje chibi propio basado en la ilustración adjunta por el usuario. Las portadas de Última carta, Lotería y Dibuja y adivina muestran a Jesús, Julissa y Sarai jugando juntos. Las portadas anteriores se conservan como archivos separados. El retrato WebP mantiene transparencia; prompts completos en assets/art/GENERACION-SARAI.json.
 
 ## Novedades visuales y casino
 
@@ -131,4 +135,3 @@ vendor/bombitas-engine.js conserva el motor original con exportación ES. pool-e
 El casino nuevo usa envolturas SECURITY INVOKER en public y operaciones privilegiadas en jj_casino, fuera de los esquemas expuestos. Estas validan auth.uid(), bloquean la cartera por operación y deniegan leer/escribir la tabla del mazo. La tabla tiene RLS sin políticas a propósito: solo las operaciones internas pueden acceder. Aviso informativo correspondiente: https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy . Los avisos anteriores de funciones públicas y protección de contraseñas no fueron modificados por esta entrega.
 
 Realtime sigue el protocolo documentado en https://supabase.com/docs/guides/realtime/protocol y su autorización por canal en https://supabase.com/docs/guides/realtime/authorization . Las políticas consultan pertenencia, emisor, estado y caducidad en un esquema privado; el navegador no puede leer sesiones completas ni reservas de propietarios.
-
