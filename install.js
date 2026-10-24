@@ -1,8 +1,8 @@
 const base=new URL('./',import.meta.url),button=document.querySelector('#install-app'),help=document.querySelector('#install-help'),status=document.querySelector('#install-status');
-let promptEvent=null,registration=null,updating=false;
+let noticeTimer,promptEvent=null,registration=null,updating=false;
 const standalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone===true;
 function paint(){button.textContent=standalone()?'✓ App instalada':'↓ Instalar app';button.disabled=standalone()}
-function notice(text){const el=document.querySelector('#toast');el.textContent=text;setTimeout(()=>{if(el.textContent===text)el.textContent=''},6000)}
+function notice(text){const el=document.querySelector('#toast');el.textContent=text;clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>{el.textContent=''},6000)}
 window.addEventListener('beforeinstallprompt',event=>{event.preventDefault();promptEvent=event;paint()});
 window.addEventListener('appinstalled',()=>{promptEvent=null;paint();notice('Nuestro Mundo ya tiene su lugar en tu teléfono. ♡')});
 matchMedia('(display-mode: standalone)').addEventListener?.('change',paint);
