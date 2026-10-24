@@ -2,6 +2,12 @@
 
 Portal de Jesús y Julissa. Versión **0.5.2**, conectado al proyecto Supabase **Una parte de nuestro universo**.
 
+## Idioma y bienvenida
+
+Selector Español / English en la cabecera, bienvenida y formularios de acceso. La preferencia se guarda en `mundo-language` en el dispositivo. Cambia navegación, acceso, controles principales y las 16 guías de juego sin recargar ni reiniciar la partida. Las preguntas editoriales y el contenido de jugadores conservan su idioma original; los textos aún no incluidos en el diccionario usan español como respaldo. Traducciones editables en `locale-data.js`.
+
+Al abrir sin sesión aparece una bienvenida con Iniciar sesión, Crear cuenta y una guía breve. Se puede explorar el juego local sin cuenta. Con una sesión guardada se intenta restaurar el acceso y no aparece la bienvenida; los problemas de red no eliminan esa sesión. Los enlaces de activación conservan prioridad. Cambiar de idioma no modifica valores de formularios, contraseñas ni opciones enviadas al servidor. Se mantiene el sistema de sesión existente.
+
 ## Mejora de presentación e interacción
 
 - Un escenario y color de acento para cada uno de los 16 juegos; fondos, tableros, cartas y controles táctiles con más profundidad.
