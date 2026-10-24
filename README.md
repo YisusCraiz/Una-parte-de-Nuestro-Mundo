@@ -2,6 +2,18 @@
 
 Portal de Jesús y Julissa. Versión **0.5.2**, conectado al proyecto Supabase **Una parte de nuestro universo**.
 
+## Premios de partidas y apuestas virtuales
+
+Las salas en línea otorgan JJV2 al terminar la serie: ganador 60, perdedor 20 y empate final 30. En juegos de convivencia/cooperativos se dan 20 por completar la actividad. Para cobrar un premio se deben jugar al menos 30 segundos; cada cuenta tiene un límite de 400 JJV2 diarios de premios de juego (UTC), aparte del regalo diario. Los juegos locales y el Gato de la API antigua siguen siendo práctica sin premios de cuenta.
+
+Los duelos de Última carta, Ochos locos, Carta alta, Veintiuno, Billar, Lotería y Dibuja pueden apostar 25, 50, 100, 250 o 500 JJV2 por persona. Por defecto no hay apuesta. Al activarla la sala pasa a dos plazas y ambos aceptan las reglas y cantidad; el servidor verifica ambos saldos y descuenta todo en una única transacción al empezar. El ganador recibe el bote completo, además de su premio; el perdedor conserva el premio de participación, menos su apuesta inicial. Ejemplo: apuesta de 100, ganador recibe 200 de bote + 60 de premio, neto +160; perdedor recibe 20, neto −80 (si cumple duración y queda cupo diario).
+
+El dinero queda reservado durante toda la serie. Abandonar explícitamente durante un duelo apostado concede la serie al rival. Un empate en una partida de una victoria devuelve las apuestas y concede el premio de empate; los empates dentro de series más largas repiten ronda. Si caduca una sala, el siguiente refresco de la cuenta devuelve las apuestas pendientes sin premio. No se paga dos veces al recargar ni al repetir la petición. El bote y sus devoluciones no consumen el límite de premios. No hay dinero real ni retiros.
+
+Piano, Varitas y las arenas con simulación del anfitrión no admiten apuestas porque su resultado depende de datos del cliente. Se mantienen sus premios de juego limitados; no se presentan como competiciones con protección contra trampas completa.
+
+Aplicar `supabase/game-economy.sql` después de los esquemas existentes y desplegar `mundo-room` con `economy.js`, `match.js` y las demás dependencias. Las reservas y el reparto se ejecutan mediante un trigger privado en la misma transacción de la sala; no se añade una API pública para cobrar ganadores enviados por el navegador. Las partidas ya empezadas antes de instalar esta versión no se cobran retroactivamente. Pruebas SQL completas en `tests/economy.cjs`.
+
 ## UNO, series y revanchas
 
 - **UNO por defecto:** al quedar con una carta aparece el botón ¡UNO!. Hasta anunciarlo o realizar la siguiente jugada/robo, otra persona puede reclamar; la primera acción válida gana y el infractor roba dos cartas. Anunciar o reclamar no cambia el turno. Las manos siguen siendo privadas.
