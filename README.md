@@ -2,6 +2,18 @@
 
 Portal de Jesús y Julissa. Versión **0.5.2**, conectado al proyecto Supabase **Una parte de nuestro universo**.
 
+## Mejora de presentación e interacción
+
+- Un escenario y color de acento para cada uno de los 16 juegos; fondos, tableros, cartas y controles táctiles con más profundidad.
+- Transiciones al mostrar preguntas, resultados, manos y cambios de turno; las manos permanecen ocultas al pasar el dispositivo.
+- Piezas del puzle que viajan a su nueva posición al intercambiarse, en local y sala.
+- Piano con carriles luminosos y respuesta al tocar o pulsar D/F/J/K.
+- Billar con paño degradado, marco de madera y luces y sombras en las bolas; Bombitas con llamas y mecha luminosa; expedición con fondo espacial, disparos luminosos y propulsores animados.
+- Sonidos de botones opcionales, apagados inicialmente, sin archivos ni peticiones externas. Movimiento reducido respetado en las nuevas transiciones de interfaz.
+- Actualización de la caché PWA para descargar los nuevos recursos.
+
+Esta mejora parte del estado de este repositorio y no incorpora el Álbum JJ ni versiones de otros proyectos. No modifica reglas, monedas, autenticación ni protocolos de salas.
+
 ## Preguntas reescritas
 
 Nunca nunca y ¿Quién es más probable? tienen 2,400 frases escritas individualmente: 100 por juego, público y nivel. Normales: humor y anécdotas; íntimas: crushes, recuerdos y sentimientos; intensas: confesiones, vergüenzas o coqueteo según el público. Familia mantiene contenido apto entre generaciones. Se permite saltar siempre. No se generan cruces automáticos para rellenar cantidad. Fuente editable: tools/preguntas-editoriales.txt; compilación explícita: node tools/build-questions.mjs. contenido-check.cjs solo valida y nunca sobrescribe el banco. Web y función de salas comparten questions.js.
