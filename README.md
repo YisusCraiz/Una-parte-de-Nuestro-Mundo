@@ -1,6 +1,10 @@
 # Una parte de Nuestro Mundo
 
-Portal de Jesús y Julissa. Versión **0.5.1**, conectado al proyecto Supabase **Una parte de nuestro universo**.
+Portal de Jesús y Julissa. Versión **0.5.2**, conectado al proyecto Supabase **Una parte de nuestro universo**.
+
+## Preguntas reescritas
+
+Nunca nunca y ¿Quién es más probable? tienen 2,400 frases escritas individualmente: 100 por juego, público y nivel. Normales: humor y anécdotas; íntimas: crushes, recuerdos y sentimientos; intensas: confesiones, vergüenzas o coqueteo según el público. Familia mantiene contenido apto entre generaciones. Se permite saltar siempre. No se generan cruces automáticos para rellenar cantidad. Fuente editable: tools/preguntas-editoriales.txt; compilación explícita: node tools/build-questions.mjs. contenido-check.cjs solo valida y nunca sobrescribe el banco. Web y función de salas comparten questions.js.
 
 ## Sarai en nuestro mundo
 
@@ -64,7 +68,7 @@ Siguen disponibles sin cuenta: los tres juegos de preguntas, Última carta, las 
 
 Bombitas, billar y shooter admiten dos personas. Los modos indicados para 2–6 se juegan por turnos o cooperativamente en la misma pantalla. Las etiquetas del catálogo distinguen cada modalidad.
 
-Los tres juegos de preguntas tienen cuatro públicos —amigos, familiares, solteros y parejas— y tres niveles —normal, más íntimo e intenso—: **100 preguntas por combinación, 3,600 textos**. El banco combina diez decisiones y diez contextos por público/nivel; hay temas comunes entre juegos y algunas frases largas. No son 3,600 situaciones independientes redactadas a mano. Intenso aumenta la profundidad emocional; no contiene contenido sexual explícito. Se puede saltar sin penalización.
+Los tres juegos de preguntas tienen cuatro públicos —amigos, familiares, solteros y parejas— y tres niveles —normal, más íntimo e intenso—: **100 preguntas por combinación, 3,600 textos**. Las 2,400 frases de Nunca nunca y ¿Quién es más probable? fueron reescritas sin combinaciones de plantillas. Las 1,200 de ¿Qué pasaría si? se conservan del banco anterior y todavía combinan acciones y contextos. Hay temas compartidos entre públicos, pero no frases idénticas dentro de cada juego reescrito. Iniciar una partida nueva vuelve a mezclar el banco; no existe historial entre partidas. Se puede saltar sin penalización.
 
 ## Instalar en el teléfono
 

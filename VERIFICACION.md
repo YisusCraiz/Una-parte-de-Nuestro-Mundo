@@ -57,3 +57,11 @@
 Inicio, imagen adjunta, catálogo, buscador, ajustes, preguntas y partidas locales revisados en pantalla estrecha; sin errores de consola observados en las rutas comprobadas. La vista no sustituye una auditoría completa de cada tamaño de pantalla.
 
 No se probaron seis dispositivos físicos ni reproducción simultánea real en varios navegadores. Las puntuaciones del piano son recreativas y no reparten monedas. En 0.2 los arcade adicionales eran locales; desde 0.5 se añadieron las salas descritas arriba. Los asesores de seguridad mantienen avisos por funciones privilegiadas intencionales; sus límites y referencias están documentados en README.
+# Versión 0.5.2 · banco editorial
+
+- Nunca nunca y ¿Quién es más probable?: 2,400 frases reescritas individualmente; 24 bloques de 100, sin frases idénticas dentro de cada juego incluso entre públicos/niveles. Revisión de longitud, forma y restos del generador anterior.
+- Fuente editable explícita y compilador separado. La comprobación de contenido ahora es de solo lectura: ejecutar pruebas no vuelve a generar las plantillas antiguas.
+- Prueba sin red de las 2,400 respuestas de la función de salas contra el banco publicado. La actualización del servidor sustituye únicamente questions.js; conserva autenticación, reglas y dependencias desplegadas.
+- Pasaron contenido-check.cjs, questions-online.test.js, pwa.test.cjs, engines.test.js y party.test.js. No se crearon cuentas ni salas persistentes para estas comprobaciones.
+- Caché PWA 0.5.2; la actualización requiere aceptar Actualizar. Las partidas nuevas vuelven a mezclar: no hay historial entre sesiones. ¿Qué pasaría si? no se reescribió en este cambio.
+
