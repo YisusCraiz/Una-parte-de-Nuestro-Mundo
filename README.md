@@ -2,6 +2,17 @@
 
 Portal de Jesús y Julissa. Versión **0.5.2**, conectado al proyecto Supabase **Una parte de nuestro universo**.
 
+## UNO, series y revanchas
+
+- **UNO por defecto:** al quedar con una carta aparece el botón ¡UNO!. Hasta anunciarlo o realizar la siguiente jugada/robo, otra persona puede reclamar; la primera acción válida gana y el infractor roba dos cartas. Anunciar o reclamar no cambia el turno. Las manos siguen siendo privadas.
+- **Acumular +2:** opción desactivada inicialmente. Permite responder a un +2 con otro +2 de cualquier color. Quien no acumula roba el total y pierde el turno. No admite +4 ni combinar +2/+4.
+- **Series en línea:** Última carta, Ochos locos, Carta alta, Veintiuno, Piano, Lotería, Dibuja y adivina, Billar, Varitas y Bombitas admiten primero en 1, 2, 3 o 5 victorias. Un empate no da victoria a nadie. El anfitrión prepara la siguiente ronda; el marcador permanece al volver al lobby. Nueva serie reinicia el marcador. Para cambiar participantes u objetivo se reinicia la serie.
+- **Convivencia y cooperación:** Verdad o reto y Dibuja ya permiten elegir turnos/vueltas; preguntas, Puzle y Expedición conservan su revancha sin inventar un ganador individual cooperativo.
+- **Local:** UNO permite seleccionar victorias y +2 acumulados; los otros juegos competitivos conservan sus botones de reinicio/revancha. Se añade Nueva lotería al terminar. El Gato en línea permite crear una revancha con un código nuevo, que se debe compartir con el rival.
+- **Despliegue:** además de integrar el frontend hay que actualizar la función Supabase `mundo-room`, incluyendo la nueva dependencia `match.js` y los motores actualizados. No requiere migración SQL. Las salas existentes conservan sus ajustes; para usar +2 acumulados se debe configurar una nueva partida.
+
+Pruebas: `tests/uno-series.test.js` valida anuncios, reclamos fuera de turno, expiración de la oportunidad, cadena +2 de colores distintos, empate de ronda, campeón, revancha, privacidad y peticiones simultáneas mediante revisión de estado. No modifica cuentas, monedas ni tablas.
+
 ## Idioma y bienvenida
 
 Selector Español / English en la cabecera, bienvenida y formularios de acceso. La preferencia se guarda en `mundo-language` en el dispositivo. Cambia navegación, acceso, controles principales y las 16 guías de juego sin recargar ni reiniciar la partida. Las preguntas editoriales y el contenido de jugadores conservan su idioma original; los textos aún no incluidos en el diccionario usan español como respaldo. Traducciones editables en `locale-data.js`.
@@ -111,7 +122,7 @@ Para reproducirlo en un proyecto vacío, el orden de fuentes SQL es:
 
 Los registros privados de reserva se crean por administración, guardando solo el hash del enlace; los tokens originales nunca se añaden al repositorio.
 
-Desplegar la función **mundo-room** con index.js, deno.json y sus dependencias engines.js, questions.js, piano-chart.js, party-engine.js y pool-engine.js. Las importaciones relativas deben conservarse o adaptarse al empaquetado. La función usa variables de entorno estándar de Supabase. No incluir claves secretas en la web. La verificación JWT de la puerta de entrada está desactivada porque la función realiza su propia autenticación contra Auth /user en cada solicitud; esto no permite acceso anónimo a salas.
+Desplegar la función **mundo-room** con index.js, deno.json y sus dependencias engines.js, match.js, questions.js, piano-chart.js, party-engine.js y pool-engine.js. Las importaciones relativas deben conservarse o adaptarse al empaquetado. La función usa variables de entorno estándar de Supabase. No incluir claves secretas en la web. La verificación JWT de la puerta de entrada está desactivada porque la función realiza su propia autenticación contra Auth /user en cada solicitud; esto no permite acceso anónimo a salas.
 
 config.js contiene únicamente URL y clave publicable del proyecto nuevo. Authentication tiene registro por contraseña habilitado y confirmación de correo desactivada para los alias internos usuario@players.jj.invalid. No hay recuperación por correo con estos alias: una recuperación requerirá intervención administrativa o incorporar un correo real verificado.
 
