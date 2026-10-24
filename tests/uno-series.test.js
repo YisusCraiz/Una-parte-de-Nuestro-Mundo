@@ -22,9 +22,14 @@ try{
  const revision=room.revision;actor='b';view=await send('catch_uno');assert.equal(room.state.hands[0].length,3);actor='a';view=await send('uno',{},revision);assert.match(view.message,/STALE/);assert.equal(room.state.hands[0].length,3);
  // Finish two rounds and preserve wins when returning through the lobby.
  room.state.hands[0]=['r7'];room.state.turn=0;room.state.color='r';await send('play',{index:0});assert.equal(room.status,'finished');assert.deepEqual(room.state.series.wins,[1,0]);
- actor='b';view=await send('next_round');assert.ok(view.message);actor='a';await send('next_round');assert.equal(room.status,'lobby');await send('start');assert.deepEqual(room.state.series.wins,[1,0]);
+ actor='b';view=await send('next_round');assert.ok(view.message);actor='a';view=await send('next_round');assert.equal(view.message,undefined);assert.equal(room.status,'lobby');await send('start');assert.deepEqual(room.state.series.wins,[1,0]);
  room.state.hands[0]=['r7'];room.state.turn=0;room.state.color='r';await send('play',{index:0});assert.equal(room.state.series.champion,0);view=await send('next_round');assert.ok(view.message);await send('rematch');await send('start');assert.deepEqual(room.state.series.wins,[0,0]);
  // Party game series: winner accounting and automatic private view remain compatible.
  room={...room,mode:'lottery',settings:{maxPlayers:2,size:3,win:'line',callSeconds:0,cards:['a','b','c','d','e','f','g','h','i'],winsTo:2},status:'lobby',state:null};await send('start');room.state.called=9;room.state.boards.a=[0,1,2,3,4,5,6,7,8];room.state.marks.a=[0,1];await send('mark',{card:2});assert.equal(room.status,'finished');assert.deepEqual(room.state.series.wins,[1,0]);await send('next_round');await send('start');assert.deepEqual(room.state.series.wins,[1,0]);
+ // Acceptance is explicit for each actor, and a forfeit works during a funded series.
+ room={...room,mode:'uno',settings:{hand:7,winsTo:1,maxPlayers:2,stake:100},status:'lobby',state:null};
+ actor='a';view=await send('start');assert.match(view.message,/aceptar/);view=await send('accept_stake');assert.equal(view.message,undefined);assert.equal(view.economy.consent.a,true);assert.equal(view.game,null);
+ actor='b';view=await send('accept_stake');assert.equal(view.economy.consent.b,true);actor='a';view=await send('start');assert.equal(view.status,'playing');actor='b';view=await send('leave');assert.equal(view.status,'finished');assert.equal(view.game.forfeit,1);assert.equal(view.series.champion,0);
+ actor='a';room={...room,mode:'highcard',settings:{maxPlayers:2,winsTo:1,stake:100},status:'playing',state:{cards:[0,13],flipped:[false,false],winners:[],series:{wins:[0,0],required:1,round:0,champion:null}}};await send('flip');actor='b';view=await send('flip');assert.equal(view.series.draw,true);actor='a';view=await send('rematch');assert.equal(view.status,'lobby');assert.equal(view.message,undefined);
  console.log('UNO y series: anuncio, reclamo, ventana, +2 acumulados, empate, campeón, revancha, privacidad y carrera STALE: OK');
 }finally{globalThis.fetch=fetchBefore;if(denoBefore===undefined)delete globalThis.Deno;else globalThis.Deno=denoBefore}
